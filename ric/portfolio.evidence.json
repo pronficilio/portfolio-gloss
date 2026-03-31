@@ -1,0 +1,255 @@
+﻿{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "ric",
+    "root": "D:/dev/ric",
+    "has_git": true,
+    "remotes": [
+      "origin https://github.com/pronficilio/ric"
+    ]
+  },
+  "project": {
+    "title": "RIC",
+    "one_liner": "Legacy PHP web application for accounting and records management.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "Server-rendered PHP application with modules for movements, people, accounts, companies, users, and reports, backed by MySQL-driven pages and AJAX endpoints."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "frontend": [
+      "Bootstrap",
+      "jQuery",
+      "DataTables",
+      "Bootstrap Datepicker",
+      "Chosen",
+      "SweetAlert",
+      "Font Awesome",
+      "Bootstrap Validator"
+    ],
+    "backend": [
+      "PHP",
+      "PDO",
+      "MySQL extension (mysql_*)"
+    ],
+    "datastores": [
+      "MySQL"
+    ],
+    "cloud": [],
+    "infra_devops": [],
+    "testing": [],
+    "tooling": []
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP runtime with legacy mysql_* compatibility",
+      "MySQL-compatible database",
+      "Web server that serves PHP entry points"
+    ],
+    "setup_steps": [
+      "This repository does not include a one-command local setup; review Connections/ric.php, Connections/database.php, login.php, and index.php before attempting to run it.",
+      "Several tracked modules reference missing connection files (Connections/sigma.php, Connections/horizonte.php, Connections/productores.php), so a complete local run cannot be verified from this checkout."
+    ],
+    "dev_command": "unknown",
+    "build_command": "unknown",
+    "test_commands": [],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": false,
+      "has_compose": false,
+      "commands": []
+    },
+    "docs_references": [
+      "Connections/ric.php",
+      "Connections/database.php",
+      "login.php",
+      "index.php",
+      "partes/header.php"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": false,
+      "levels": [],
+      "frameworks": [],
+      "evidence_paths": []
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Maintained a server-rendered PHP application with authenticated login, session handling, and access-restricted pages.",
+      "confidence": "high",
+      "evidence_paths": [
+        "login.php",
+        "recursos/session.php",
+        "inicio.php",
+        "partes/header.php"
+      ],
+      "notes": "Login form, session start, and access checks are explicit in the tracked code."
+    },
+    {
+      "bullet": "Worked on a multi-module back-office UI covering movements, people, accounts, companies, users, and reports.",
+      "confidence": "high",
+      "evidence_paths": [
+        "partes/header.php",
+        "movimientos.php",
+        "personas.php",
+        "cuentas.php",
+        "empresas.php",
+        "usuarios.php",
+        "reporte.php"
+      ],
+      "notes": "The shared navigation and top-level entry points expose the application surface directly."
+    },
+    {
+      "bullet": "Implemented server-side DataTables workflows for paging, filtering, and searching records from PHP JSON endpoints.",
+      "confidence": "high",
+      "evidence_paths": [
+        "movimientos.php",
+        "personas.php",
+        "cuentas.php",
+        "usuarios.php",
+        "reporte.php",
+        "datatable-serverside/movimientos.php",
+        "datatable-serverside/personas.php",
+        "datatable-serverside/cuentas.php",
+        "datatable-serverside/usuarios.php",
+        "datatable-serverside/resumen.php"
+      ],
+      "notes": "UI pages initialize DataTables in server-side mode and point them at PHP endpoints that return JSON."
+    },
+    {
+      "bullet": "Implemented accounting policy and payment persistence flows backed by MySQL tables such as polizas and pagos.",
+      "confidence": "high",
+      "evidence_paths": [
+        "movimientos/files-serverside/addPoliza.php",
+        "movimientos/files-serverside/addPago.php",
+        "datatable-serverside/movimientos.php"
+      ],
+      "notes": "Insert and update queries for policies and payments are explicit in the server-side handlers."
+    },
+    {
+      "bullet": "Added role-aware and company-aware filtering to movement and report endpoints based on the logged-in user and assigned companies.",
+      "confidence": "high",
+      "evidence_paths": [
+        "datatable-serverside/movimientos.php",
+        "datatable-serverside/resumen.php",
+        "usuarios/files-serverside/asignarEmpresaUsuario.php"
+      ],
+      "notes": "Endpoint conditions branch on user access level, selected company, and company assignments."
+    },
+    {
+      "bullet": "Implemented document and media upload handlers for people, companies, policy PDFs/XML, and user images using PHP file uploads.",
+      "confidence": "high",
+      "evidence_paths": [
+        "personas/takeArchivos/subirDocumento.php",
+        "movimientos/takeArchivos/subirPdfPoliza.php",
+        "movimientos/takeArchivos/subirXmlPoliza.php",
+        "usuarios/imagenes/procesa.php",
+        "empresas.php"
+      ],
+      "notes": "The tracked handlers use move_uploaded_file and persist uploaded asset metadata in MySQL tables."
+    },
+    {
+      "bullet": "Automated company onboarding by creating the company record and seeding related account structures.",
+      "confidence": "high",
+      "evidence_paths": [
+        "empresas/files-serverside/addEmpresa.php"
+      ],
+      "notes": "The company creation handler inserts into empresa and then creates multiple cuentas records."
+    },
+    {
+      "bullet": "Built user-to-company assignment flows with primary-company logic and supporting admin grids.",
+      "confidence": "high",
+      "evidence_paths": [
+        "usuarios.php",
+        "usuarios/files-serverside/asignarEmpresaUsuario.php",
+        "usuarios/datatable-serverside/empresas_usuarios.php",
+        "usuarios/datatable-serverside/asignar_empresa_usuario.php"
+      ],
+      "notes": "The UI and handlers explicitly support assigning, listing, and prioritizing companies per user."
+    },
+    {
+      "bullet": "Implemented person-to-account linking and document management inside the people module.",
+      "confidence": "high",
+      "evidence_paths": [
+        "personas.php",
+        "personas/files-serverside/nuevaCuentaPersona.php",
+        "personas/datatable-serverside/cuentasb_personas.php",
+        "personas/datatable-serverside/documentos_personas.php"
+      ],
+      "notes": "The people screen includes account assignment workflows and a dedicated documents grid."
+    },
+    {
+      "bullet": "Added export-oriented reporting views with copy, CSV, Excel, PDF, print, and column-visibility actions.",
+      "confidence": "high",
+      "evidence_paths": [
+        "reporte.php",
+        "datatable-serverside/resumen.php",
+        "datatable-serverside/resumenF.php"
+      ],
+      "notes": "The report page loads DataTables Buttons and wires export actions to summary endpoints."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 5017,
+    "approx_loc": 1137507,
+    "commit_count": 1
+  },
+  "red_flags": [
+    {
+      "issue": "Tracked connection files contain hard-coded database credentials.",
+      "paths": [
+        "Connections/ric.php",
+        "Connections/database.php"
+      ],
+      "notes": "Credentials were intentionally redacted from the generated documentation and should not be published."
+    },
+    {
+      "issue": "The checkout appears incomplete for a reproducible local run because several referenced connection files are missing.",
+      "paths": [
+        "usuarios/datatable-serverside/usuarios.php",
+        "polizas/files-serverside/datosTicket.php",
+        "emp/takePicture/subirFotosIdentificacion.php",
+        "Connections/ric.php",
+        "Connections/database.php"
+      ],
+      "notes": "Tracked code references Connections/horizonte.php, Connections/sigma.php, and Connections/productores.php, but only ric.php and database.php exist under Connections/."
+    },
+    {
+      "issue": "The codebase depends heavily on deprecated mysql_* APIs.",
+      "paths": [
+        "Connections/ric.php",
+        "datatable-serverside/movimientos.php",
+        "movimientos/files-serverside/addPoliza.php"
+      ],
+      "notes": "Running on modern PHP versions may require code changes or legacy compatibility support."
+    }
+  ]
+}
+

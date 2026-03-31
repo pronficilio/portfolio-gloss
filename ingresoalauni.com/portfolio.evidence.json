@@ -1,0 +1,264 @@
+﻿{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "ingreso",
+    "root": "D:/xampp5/htdocs/ingreso",
+    "has_git": true,
+    "remotes": [
+      "https://bitbucket.org/pronficilio/ingresoalauni.git"
+    ]
+  },
+  "project": {
+    "title": "Ingreso a la Uni / SAINS",
+    "one_liner": "Legacy PHP web platform for university entrance-exam preparation, enrollment, and student self-study workflows.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "Legacy PHP application that combines a public marketing site, course and guide registration microsites, an authenticated SAINS learning portal, and admin/upload modules for university entrance-exam preparation services."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SQL"
+    ],
+    "frontend": [
+      "Bootstrap",
+      "jQuery",
+      "SweetAlert",
+      "DataTables",
+      "Chosen"
+    ],
+    "backend": [
+      "PHPMailer",
+      "Google API Client",
+      "Vimeo API",
+      "Conekta PHP SDK"
+    ],
+    "datastores": [
+      "MySQL"
+    ],
+    "cloud": [],
+    "infra_devops": [
+      "Apache HTTP Server",
+      "Docker",
+      "Docker Compose"
+    ],
+    "testing": [],
+    "tooling": [
+      "Composer"
+    ]
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP",
+      "Composer",
+      "MySQL",
+      "Apache-compatible web server"
+    ],
+    "setup_steps": [
+      "This repository does not include a one-command local setup; review composer.json, ingresoa_ingreso.sql, php/database.php, and sains/Connections/sains.php before attempting a local run.",
+      "Install the PHP dependencies declared in composer.json.",
+      "Provision a MySQL database from ingresoa_ingreso.sql.",
+      "Review file-based configuration under php/ and sains/Connections/ before serving the application."
+    ],
+    "dev_command": "unknown",
+    "build_command": "unknown",
+    "test_commands": [],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": true,
+      "has_compose": true,
+      "commands": []
+    },
+    "docs_references": [
+      "composer.json",
+      "ingresoa_ingreso.sql",
+      "php/database.php",
+      "sains/Connections/sains.php",
+      "sains/fotografias/Dockerfile",
+      "sains/fotografias/docker-compose.yml",
+      "sains/comprobantes/Dockerfile",
+      "sains/comprobantes/docker-compose.yml"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": false,
+      "levels": [],
+      "frameworks": [],
+      "evidence_paths": []
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Built and maintained a PHP/MySQL web platform that combined public marketing pages, student registration, and authenticated learning flows for university entrance-exam preparation.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "php/database.php",
+        "sains/index.php",
+        "sains/sains_online.php"
+      ],
+      "notes": "Public site and authenticated portal are explicitly separated in the repository."
+    },
+    {
+      "bullet": "Implemented multiple authentication and onboarding paths, including email/password, Google OAuth, and Facebook-based signup/login.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "login.php",
+        "php/saveUsuario.php"
+      ],
+      "notes": "Social and email-based flows are explicit in application source."
+    },
+    {
+      "bullet": "Added transactional email workflows for contact requests, new-user registration, and guide-download confirmations using PHPMailer and native mail handlers.",
+      "confidence": "high",
+      "evidence_paths": [
+        "php/Contacto.php",
+        "php/saveUsuario.php",
+        "guiaUAEM/action.php",
+        "curso/php/registro.php"
+      ],
+      "notes": "Email sending is directly implemented in the server-side handlers."
+    },
+    {
+      "bullet": "Delivered an online study experience with video playback, exam simulators, results/history views, and progress tracking against watched-time thresholds.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains/sains_online.php",
+        "sains/sains_online/htmls/videos.html",
+        "sains/sains_online/htmls/resultados.html",
+        "sains/sains_online/htmls/historial_minis.html",
+        "cron.php"
+      ],
+      "notes": "Watched-time checks and cron-based follow-up logic are explicit in the code."
+    },
+    {
+      "bullet": "Integrated payment-related enrollment flows, including Conekta-based OXXO cash order generation and course-payment instructions for online registration.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains/conekta.php",
+        "curso/index.html",
+        "curso/Terminos.html"
+      ],
+      "notes": "Conekta usage is explicit; broader payment instructions are documented in course pages."
+    },
+    {
+      "bullet": "Supported student photograph and payment-receipt uploads through dedicated server-side upload handlers and file-storage endpoints.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains/fotografias/index.php",
+        "sains/fotografias/UploadHandler.php",
+        "sains/comprobantes/index.php",
+        "sains/comprobantes/UploadHandler.php"
+      ],
+      "notes": "Both modules instantiate dedicated UploadHandler classes."
+    },
+    {
+      "bullet": "Maintained a separate admin surface for operational workflows such as users, payments, exams, questions, coupons, and administrator management.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains/admin.php",
+        "sains/administracion/index.php",
+        "sains/administracion/usuarios.php",
+        "sains/administracion/pagos.php",
+        "sains/administracion/examenes.php",
+        "sains/administracion/reactivos.php",
+        "sains/administracion/cupones.php",
+        "sains/administracion/administradores.php"
+      ],
+      "notes": "Capabilities are explicit from the admin entry points and module filenames."
+    },
+    {
+      "bullet": "Packaged upload-related modules in Dockerized PHP 7/Apache environments with GD and Imagick enabled for image handling.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains/fotografias/Dockerfile",
+        "sains/fotografias/docker-compose.yml",
+        "sains/comprobantes/Dockerfile",
+        "sains/comprobantes/docker-compose.yml"
+      ],
+      "notes": "Docker coverage is limited to upload modules rather than the full application."
+    },
+    {
+      "bullet": "Created UAEM-focused microsites for course registration and guide-download funnels that feed into the broader SAINS ecosystem.",
+      "confidence": "high",
+      "evidence_paths": [
+        "curso/index.html",
+        "curso/Registro.html",
+        "curso/Terminos.html",
+        "guiaUAEM/prueba.html",
+        "guiaUAEM/action.php"
+      ],
+      "notes": "These directories operate as standalone campaign flows inside the same repository."
+    },
+    {
+      "bullet": "Implemented a scheduled follow-up routine that records cron execution and checks whether users met expected daily study-time targets.",
+      "confidence": "high",
+      "evidence_paths": [
+        "cron.php"
+      ],
+      "notes": "The cron file writes to diario_cronjob and compares watched-time values against threshold rules."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 6031,
+    "approx_loc": 1542701,
+    "commit_count": 8
+  },
+  "red_flags": [
+    {
+      "issue": "Committed third-party credentials and API keys appear in application source files.",
+      "paths": [
+        "index.php",
+        "login.php",
+        "sains/conekta.php",
+        "sains/dameVideoVimeo.php"
+      ],
+      "notes": "Keep them out of public documentation and rotate or externalize them before reuse."
+    },
+    {
+      "issue": "Core application code mixes legacy mysql_* calls and PDO-based database access.",
+      "paths": [
+        "sains/index.php",
+        "sains/admin.php",
+        "php/database.php",
+        "cron.php"
+      ],
+      "notes": "This increases maintenance risk and makes data access behavior less consistent."
+    },
+    {
+      "issue": "Local setup is manual and spread across manifests, SQL dumps, and module-specific Docker files.",
+      "paths": [
+        "composer.json",
+        "ingresoa_ingreso.sql",
+        "sains/fotografias/docker-compose.yml",
+        "sains/comprobantes/docker-compose.yml"
+      ],
+      "notes": "The repository does not provide a documented root-level bootstrap flow."
+    }
+  ]
+}

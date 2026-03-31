@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "sains",
+    "root": "D:\\dev\\ingresoalauni.com\\sains",
+    "has_git": false,
+    "remotes": []
+  },
+  "project": {
+    "title": "SAINS",
+    "one_liner": "Legacy PHP web application for university admission exam preparation, online courses, and practice exams.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "Spanish-language PHP/MySQL application with a public landing page, authenticated course area, exam-related flows, downloadable study materials, video content, and payment integrations."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SQL"
+    ],
+    "frontend": [
+      "Bootstrap",
+      "jQuery",
+      "DataTables",
+      "jQuery UI",
+      "SweetAlert",
+      "Chosen",
+      "Bootstrap Datepicker",
+      "Select2"
+    ],
+    "backend": [
+      "PHP Sessions",
+      "PDO",
+      "ext/mysql"
+    ],
+    "datastores": [
+      "MySQL"
+    ],
+    "cloud": [
+      "PayPal",
+      "Conekta",
+      "Vimeo",
+      "Google Analytics"
+    ],
+    "infra_devops": [],
+    "testing": [],
+    "tooling": []
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP runtime with PDO MySQL and compatibility for legacy mysql_* calls",
+      "MySQL",
+      "A PHP-capable web server"
+    ],
+    "setup_steps": [
+      "This repository does not include a documented one-command local setup.",
+      "Review and replace database settings in Connections/sains.php and Connections/database.php with local values before running locally.",
+      "Serve the directory through a PHP-capable web server and use index.php as the public entry point.",
+      "Provision a MySQL schema containing tables referenced in source code, including usuarios, reactivos, tronco, and catalogo_preparatorias."
+    ],
+    "dev_command": null,
+    "build_command": null,
+    "test_commands": [],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": false,
+      "has_compose": false,
+      "commands": []
+    },
+    "docs_references": [
+      "index.php",
+      "inicio.php",
+      "sains_online.php",
+      "Connections/sains.php",
+      "Connections/database.php",
+      "php.ini",
+      "dameVideoVimeo.php"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": false,
+      "levels": [],
+      "frameworks": [],
+      "evidence_paths": []
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Built a PHP/MySQL web application for university-admission exam preparation with public landing, login, and authenticated dashboard flows.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "inicio.php",
+        "Connections/sains.php"
+      ],
+      "notes": "The public and authenticated entry points explicitly query MySQL and redirect users between login and member areas."
+    },
+    {
+      "bullet": "Implemented session-gated access control for member areas using PHP sessions and redirect checks.",
+      "confidence": "high",
+      "evidence_paths": [
+        "inicio.php",
+        "sains_online.php",
+        "logout.php"
+      ],
+      "notes": "Both authenticated entry points perform session checks before rendering member functionality."
+    },
+    {
+      "bullet": "Integrated multiple preparation experiences, including admission-exam simulators, a professional-profile exam, demo exams, and a course hub.",
+      "confidence": "medium",
+      "evidence_paths": [
+        "inicio.php",
+        "sains_online.php",
+        "sains_online/htmls/principal.html",
+        "sains_online/htmls/minisimulador.html"
+      ],
+      "notes": "UI flows and form targets are explicit in the source, but several referenced exam directories are absent from this snapshot."
+    },
+    {
+      "bullet": "Served downloadable study guides and printable exam materials directly from versioned PDF assets.",
+      "confidence": "high",
+      "evidence_paths": [
+        "inicio.php",
+        "documentos/1.pdf",
+        "documentos/3.pdf",
+        "documentos/4.pdf",
+        "documentos/guia_completa_premium.pdf"
+      ],
+      "notes": "The member dashboard links directly to bundled PDFs for guides and sample exam material."
+    },
+    {
+      "bullet": "Added payment capture flows for PayPal checkout and Conekta-based OXXO cash orders.",
+      "confidence": "medium",
+      "evidence_paths": [
+        "inicio.php",
+        "conekta.php"
+      ],
+      "notes": "PayPal forms are embedded in the dashboard and the backend endpoint creates Conekta OXXO cash orders, but local execution also depends on SDK files not present in this tree."
+    },
+    {
+      "bullet": "Built AJAX endpoints for dependent selectors over states, municipalities, and preparatory schools during onboarding or data capture.",
+      "confidence": "high",
+      "evidence_paths": [
+        "genera/estados.php",
+        "genera/municipios.php",
+        "genera/prepas.php",
+        "index.php"
+      ],
+      "notes": "The endpoints query catalogo_preparatorias and emit HTML option lists for chained selects."
+    },
+    {
+      "bullet": "Implemented server-side JSON delivery for DataTables-backed class and video listings, including paging, filtering, ordering, and guide downloads.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains_online/datatable-serverside/videos.php",
+        "inicio.php"
+      ],
+      "notes": "The videos endpoint follows the DataTables server-side protocol and generates guide download cells in the response."
+    },
+    {
+      "bullet": "Integrated Vimeo-hosted educational video playback into course content.",
+      "confidence": "medium",
+      "evidence_paths": [
+        "dameVideoVimeo.php",
+        "inicio.php",
+        "sains_online/htmls/videos.html"
+      ],
+      "notes": "The endpoint uses the Vimeo SDK and is called from the course UI, but it expects a parent-level vendor autoload file that is not present in this snapshot."
+    },
+    {
+      "bullet": "Implemented account-verification UX with verification-code submission and resend actions after registration.",
+      "confidence": "high",
+      "evidence_paths": [
+        "verificar_cuenta.php",
+        "index.php"
+      ],
+      "notes": "The verification page accepts a code, supports resend, and is tied to the landing-page onboarding flow."
+    },
+    {
+      "bullet": "Rendered exam-result views with subject-level breakdowns and both Ceneval-style and conventional result labels.",
+      "confidence": "high",
+      "evidence_paths": [
+        "sains_online/htmls/resultados.html",
+        "sains_online/htmls/instrucciones.html"
+      ],
+      "notes": "The result fragment defines per-subject counts and dual result labels for the exam experience."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 1772,
+    "approx_loc": 355404,
+    "commit_count": 0
+  },
+  "red_flags": [
+    {
+      "issue": "Git metadata is missing from the workspace, so remotes, tracked files, and commit history could not be verified from .git data.",
+      "paths": [],
+      "notes": "git rev-parse --show-toplevel and git rev-list --count HEAD both failed because this directory tree is not attached to a Git repository."
+    },
+    {
+      "issue": "Secrets are hard-coded in source files.",
+      "paths": [
+        "Connections/sains.php",
+        "conekta.php",
+        "dameVideoVimeo.php"
+      ],
+      "notes": "Database credentials and third-party API credentials are committed directly in PHP files and should be rotated and removed from version control."
+    },
+    {
+      "issue": "The repository snapshot is incomplete for local execution.",
+      "paths": [
+        "index.php",
+        "inicio.php",
+        "sains_online.php",
+        "sains_online/datatable-serverside/videos.php",
+        "dameVideoVimeo.php"
+      ],
+      "notes": "The code references missing paths such as htmls/, files-serverside/, remote_files/, p_inicio/, funciones/, js/, imagenes/, vendor/, jquery-ui-1.12.1.start, jquery-ui-1.12.1, and multiple examen_* directories."
+    },
+    {
+      "issue": "The codebase mixes deprecated ext/mysql calls with PDO.",
+      "paths": [
+        "Connections/sains.php",
+        "Connections/database.php",
+        "index.php",
+        "inicio.php",
+        "sains_online/datatable-serverside/videos.php"
+      ],
+      "notes": "This indicates a legacy PHP stack and likely runtime constraints for modern PHP versions."
+    },
+    {
+      "issue": "Repository-level stats are inflated by bundled third-party distributions committed to the tree.",
+      "paths": [
+        "bootstrap",
+        "DataTables-1.10.13",
+        "jquery-ui-1.10.2.custom"
+      ],
+      "notes": "The workspace includes vendored library source and documentation, so file-count and LOC totals are not a pure measure of first-party application code."
+    }
+  ]
+}

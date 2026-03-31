@@ -1,0 +1,290 @@
+﻿{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "siguecruzroja",
+    "root": "D:/xampp73/htdocs/siguecruzroja",
+    "has_git": true,
+    "remotes": [
+      "origin https://bitbucket.org/alexisesr/siguecruzroja.git"
+    ]
+  },
+  "project": {
+    "title": "siguecruzroja",
+    "one_liner": "Laravel web platform for student onboarding, course delivery, and related administrative workflows.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "This repository is a Laravel 6 application with Blade views, Vue-enhanced interactions, and a documented API surface. Checked-in routes and source files cover student registration, enrollment requests, course packages, topics, videos, resources, assignments, chats, documents, and payment-related workflows."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "SCSS",
+      "Blade",
+      "Markdown"
+    ],
+    "frontend": [
+      "Vue.js 2",
+      "Blade",
+      "Bootstrap 4",
+      "Axios",
+      "jQuery",
+      "Laravel Echo",
+      "Laravel Mix"
+    ],
+    "backend": [
+      "Laravel 6",
+      "Laravel Passport",
+      "Laravel Socialite",
+      "Yajra DataTables",
+      "Maatwebsite Excel",
+      "Google API Client",
+      "Conekta PHP SDK",
+      "LaRecipe"
+    ],
+    "datastores": [
+      "MySQL",
+      "Redis"
+    ],
+    "cloud": [],
+    "infra_devops": [
+      "Pusher"
+    ],
+    "testing": [
+      "PHPUnit"
+    ],
+    "tooling": [
+      "Composer",
+      "npm",
+      "Webpack",
+      "Laravel Mix",
+      "StyleCI",
+      "EditorConfig"
+    ]
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP 7.2+",
+      "Composer",
+      "Node.js and npm",
+      "A configured database connection (the default Laravel connection is MySQL)"
+    ],
+    "setup_steps": [
+      "composer install",
+      "npm install",
+      "Create a local Laravel environment file manually; this repository does not include .env.example",
+      "php artisan key:generate"
+    ],
+    "dev_command": "unknown",
+    "build_command": "npm run prod",
+    "test_commands": [
+      "vendor/bin/phpunit"
+    ],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": false,
+      "has_compose": false,
+      "commands": []
+    },
+    "docs_references": [
+      "composer.json",
+      "package.json",
+      "phpunit.xml",
+      "config/app.php",
+      "config/database.php",
+      "config/mail.php",
+      "config/larecipe.php",
+      "config/services.php",
+      "config/vimeo.php"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": true,
+      "tools": [
+        "StyleCI",
+        "EditorConfig"
+      ],
+      "evidence_paths": [
+        ".styleci.yml",
+        ".editorconfig"
+      ]
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": true,
+      "levels": [
+        "unit",
+        "integration"
+      ],
+      "frameworks": [
+        "PHPUnit"
+      ],
+      "evidence_paths": [
+        "phpunit.xml",
+        "tests/Unit/ExampleTest.php",
+        "tests/Feature/ExampleTest.php"
+      ]
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Built a Laravel 6 monolith that combines server-rendered Blade views, REST-style API endpoints, and a Vue-powered frontend asset pipeline.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "routes/web.php",
+        "routes/api.php",
+        "resources/js/app.js",
+        "webpack.mix.js"
+      ],
+      "notes": "Framework, routing, and asset-build evidence are explicit in the checked-in manifests and source files."
+    },
+    {
+      "bullet": "Implemented student-facing learning flows for course packages, topics, videos, exams, assignments, and progress tracking.",
+      "confidence": "high",
+      "evidence_paths": [
+        "routes/web.php",
+        "routes/api.php",
+        "app/Http/Controllers/PanelAlumnoController.php",
+        "resources/docs/1.0/ApiTareaController.md",
+        "resources/docs/1.0/ApiVideoUserController.md"
+      ],
+      "notes": "The route map and API docs explicitly cover these flows."
+    },
+    {
+      "bullet": "Exposed a documented API surface with LaRecipe/Larecipe-Swagger covering students, enrollment, schedules, videos, resources, chats, charges, and tasks.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "config/larecipe.php",
+        "resources/docs/1.0/index.md",
+        "routes/api.php"
+      ],
+      "notes": "Documentation tooling and versioned markdown docs are checked in."
+    },
+    {
+      "bullet": "Integrated third-party services for OAuth login, Vimeo video retrieval, Google Classroom access, and payment/webhook processing.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "routes/web.php",
+        "app/Http/Controllers/PanelAlumnoController.php",
+        "app/Http/Controllers/ConektaController.php",
+        "app/Http/Controllers/GoogleClassroomController.php",
+        "config/services.php"
+      ],
+      "notes": "The integrations are explicit in dependencies, routes, and controller code."
+    },
+    {
+      "bullet": "Implemented real-time chat using Laravel broadcasting, Echo, Pusher, private channels, and Vue components.",
+      "confidence": "high",
+      "evidence_paths": [
+        "resources/js/bootstrap.js",
+        "resources/js/app.js",
+        "app/Events/MessageSent.php",
+        "routes/channels.php",
+        "routes/api.php"
+      ],
+      "notes": "Frontend listeners, a broadcast event, and channel authorization are all present."
+    },
+    {
+      "bullet": "Modeled and evolved a large relational schema with extensive Laravel migrations and seeders.",
+      "confidence": "high",
+      "evidence_paths": [
+        "database/migrations/2014_10_12_000000_create_users_table.php",
+        "database/migrations/2021_01_07_160426_create_tema_recurso.php",
+        "database/seeds/DatabaseSeeder.php",
+        "database/seeds/ExtensionSeeder.php"
+      ],
+      "notes": "The repository contains many timestamped migrations spanning multiple feature areas."
+    },
+    {
+      "bullet": "Added back-office CRUD interfaces with DataTables-backed listings for subjects, schedules, packages, videos, resources, and students.",
+      "confidence": "medium",
+      "evidence_paths": [
+        "routes/web.php",
+        "app/Http/Controllers/RecursoController.php",
+        "app/Http/Controllers/TemarioController.php",
+        "resources/views/video.blade.php"
+      ],
+      "notes": "The behavior is inferred from route names, controller names, and DataTables-based view code rather than a dedicated product overview document."
+    },
+    {
+      "bullet": "Supported spreadsheet-based student imports through Maatwebsite Excel.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "app/Imports/AlumnosImport.php",
+        "routes/web.php"
+      ],
+      "notes": "Excel dependency, import class, and upload route are all present in the repository."
+    },
+    {
+      "bullet": "Kept PHPUnit unit and feature test scaffolding plus StyleCI formatting rules in the repository.",
+      "confidence": "high",
+      "evidence_paths": [
+        "phpunit.xml",
+        "tests/Unit/ExampleTest.php",
+        "tests/Feature/ExampleTest.php",
+        ".styleci.yml"
+      ],
+      "notes": "Quality tooling exists, although the checked-in tests are currently minimal."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 1075,
+    "approx_loc": 87339,
+    "commit_count": 198
+  },
+  "red_flags": [
+    {
+      "issue": "A committed .env file is present, but .env.example is missing even though composer.json references it during setup.",
+      "paths": [
+        ".env",
+        "composer.json"
+      ],
+      "notes": "Do not publish or reuse committed environment values; create a clean environment template before public distribution."
+    },
+    {
+      "issue": "Hard-coded third-party credentials or callback settings are committed in application code and config.",
+      "paths": [
+        "app/Http/Controllers/ConektaController.php",
+        "config/services.php",
+        "resources/js/bootstrap.js"
+      ],
+      "notes": "Move service keys, secrets, callback URLs, and realtime configuration into environment-driven settings before deploying or publishing."
+    },
+    {
+      "issue": "The checked-in test suite appears to be limited to the default example unit and feature tests.",
+      "paths": [
+        "phpunit.xml",
+        "tests/Unit/ExampleTest.php",
+        "tests/Feature/ExampleTest.php"
+      ],
+      "notes": "PHPUnit is configured, but the repository evidence shows very light automated test coverage."
+    },
+    {
+      "issue": "Google Classroom integration depends on local credential files that are not templated or documented in the repository.",
+      "paths": [
+        "app/Http/Controllers/GoogleClassroomController.php"
+      ],
+      "notes": "The controller expects credential and token files under storage/app, which implies an undocumented manual setup step."
+    }
+  ]
+}
+

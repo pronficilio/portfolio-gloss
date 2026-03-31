@@ -1,0 +1,324 @@
+{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "sigue",
+    "root": "D:/dev/sigueLectura/sigueMaster",
+    "has_git": true,
+    "remotes": [
+      "https://github.com/pronficilio/sigue"
+    ]
+  },
+  "project": {
+    "title": "sigue",
+    "one_liner": "Laravel 6 education platform for student enrollment, learning content, assessments, messaging, and payment operations.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "This repository contains a Laravel 6 monolith with Blade views, a large API surface, generated API documentation, and Vue-based chat components. Student-facing views reference the Entrenator brand, while the tracked routes and controllers cover academic content, assessments, messaging, and collections workflows."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "Blade",
+      "SCSS"
+    ],
+    "frontend": [
+      "Vue.js 2",
+      "Bootstrap 4",
+      "Laravel Echo"
+    ],
+    "backend": [
+      "Laravel 6",
+      "Laravel Passport",
+      "Laravel Socialite",
+      "LaRecipe",
+      "LaRecipe Swagger",
+      "Maatwebsite Laravel Excel"
+    ],
+    "datastores": [
+      "MySQL"
+    ],
+    "cloud": [
+      "Pusher",
+      "Vimeo",
+      "Mercado Pago",
+      "Conekta",
+      "PayPal",
+      "BBVA",
+      "Santander"
+    ],
+    "infra_devops": [],
+    "testing": [
+      "PHPUnit"
+    ],
+    "tooling": [
+      "Composer",
+      "npm",
+      "Webpack",
+      "Laravel Mix",
+      "StyleCI"
+    ]
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP 7.2+",
+      "Composer",
+      "Node.js and npm",
+      "A database supported by Laravel 6; config/database.php defaults to MySQL",
+      "A frontend host configured for URL_QUASAR redirects if you need the login or student panel routes"
+    ],
+    "setup_steps": [
+      "This repository does not include a tracked .env.example or a documented one-command local setup.",
+      "Detected frontend asset commands: npm run dev, npm run watch, npm run hot, npm run prod.",
+      "Detected operational Artisan commands: php artisan santander:process, php artisan colegiatura:cobrar, php artisan send:access.",
+      "Review routes/web.php before local web setup because login and panel routes redirect to URL_QUASAR."
+    ],
+    "dev_command": "npm run dev",
+    "build_command": "npm run prod",
+    "test_commands": [],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": false,
+      "has_compose": false,
+      "commands": []
+    },
+    "docs_references": [
+      "composer.json",
+      "package.json",
+      "phpunit.xml",
+      "routes/web.php",
+      "config/database.php",
+      "app/Console/Commands/CheckFilesSantander.php",
+      "app/Console/Commands/CobrarColegiatura.php",
+      "app/Console/Commands/SendAccess.php"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": true,
+      "tools": [
+        "StyleCI"
+      ],
+      "evidence_paths": [
+        ".styleci.yml"
+      ]
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": true,
+      "levels": [
+        "unit",
+        "integration"
+      ],
+      "frameworks": [
+        "PHPUnit"
+      ],
+      "evidence_paths": [
+        "phpunit.xml",
+        "composer.json"
+      ]
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Built and maintained a Laravel 6 monolith that combines web routes, Blade views, and a large REST-like API for academic and operations workflows.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "routes/web.php",
+        "routes/api.php",
+        "resources/views/index.blade.php"
+      ],
+      "notes": "Explicit in framework metadata, route files, and tracked Blade views."
+    },
+    {
+      "bullet": "Implemented student onboarding and enrollment flows with requests, custom registration fields, package assignment, groups, grades, scholarships, and notifications.",
+      "confidence": "high",
+      "evidence_paths": [
+        "routes/api.php",
+        "app/Http/Controllers/ApiSolicitudController.php",
+        "app/Http/Controllers/ApiCamposInscripcionController.php",
+        "app/Http/Controllers/ApiPaquetealumnoController.php",
+        "app/Http/Controllers/ApiBecasController.php",
+        "app/Http/Controllers/ApiNotificacionesController.php"
+      ],
+      "notes": "Route and controller names explicitly describe these flows."
+    },
+    {
+      "bullet": "Built content-management modules for subjects, topics, videos, documents, resources, glossary terms, and lesson-planning imports.",
+      "confidence": "high",
+      "evidence_paths": [
+        "routes/api.php",
+        "app/Http/Controllers/ApiMateriaController.php",
+        "app/Http/Controllers/ApiTemarioController.php",
+        "app/Http/Controllers/ApiVideoController.php",
+        "app/Http/Controllers/ApiDocumentoController.php",
+        "app/Http/Controllers/ApiRecursoController.php",
+        "app/Http/Controllers/ApiGlosarioController.php",
+        "app/Http/Controllers/ApiPlaneacionController.php"
+      ],
+      "notes": "The tracked API modules cover both academic content and planning imports."
+    },
+    {
+      "bullet": "Delivered assessment and progress-tracking workflows covering question banks, exam generation, answer capture, grading, attendance, notes, and topic completion.",
+      "confidence": "high",
+      "evidence_paths": [
+        "routes/api.php",
+        "app/Http/Controllers/ApiPreguntaController.php",
+        "app/Http/Controllers/ApiExamenController.php",
+        "app/Http/Controllers/ApiAsistenciasController.php",
+        "app/Http/Controllers/ApiNotaAlumnoController.php",
+        "app/Http/Controllers/ApiTemaVistoController.php"
+      ],
+      "notes": "Endpoints and controller names are explicit."
+    },
+    {
+      "bullet": "Implemented real-time chat with Laravel broadcasting, Echo/Pusher, private channels, and Vue components.",
+      "confidence": "high",
+      "evidence_paths": [
+        "app/Events/MessageSent.php",
+        "app/Http/Controllers/ApiChatsController.php",
+        "routes/channels.php",
+        "resources/js/bootstrap.js",
+        "resources/js/app.js",
+        "resources/js/components/ChatForm.vue",
+        "resources/js/components/ChatMessages.vue"
+      ],
+      "notes": "Broadcast events, channel wiring, and Vue listeners are all tracked in the repository."
+    },
+    {
+      "bullet": "Integrated multi-provider payment and collections workflows spanning Mercado Pago, Conekta, PayPal, BBVA, and Santander reference/file processing.",
+      "confidence": "high",
+      "evidence_paths": [
+        "routes/api.php",
+        "routes/web.php",
+        "app/Http/Controllers/ApiMercadoPago.php",
+        "app/Http/Controllers/ConektaController.php",
+        "app/Http/Controllers/ApiBbvaController.php",
+        "app/Http/Controllers/ApiSantanderController.php",
+        "app/Santander.php",
+        "app/Http/Controllers/Repositories/PayPalRepository.php"
+      ],
+      "notes": "The route layer, controllers, and payment-support classes explicitly name these providers."
+    },
+    {
+      "bullet": "Added operational Artisan commands for tuition charging, Santander file ingestion, and bulk access-reset emails.",
+      "confidence": "high",
+      "evidence_paths": [
+        "app/Console/Commands/CobrarColegiatura.php",
+        "app/Console/Commands/CheckFilesSantander.php",
+        "app/Console/Commands/SendAccess.php"
+      ],
+      "notes": "Command signatures and descriptions are explicit in tracked code."
+    },
+    {
+      "bullet": "Supported bulk spreadsheet imports for students, groups, users, and planning data with Laravel Excel.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "app/Imports/AlumnoImport.php",
+        "app/Imports/AlumnosImport.php",
+        "app/Imports/GrupoImport.php",
+        "app/Imports/UsersImport.php",
+        "app/Imports/PlaneacionImport.php",
+        "app/Http/Controllers/ApiAlumnosController.php",
+        "app/Http/Controllers/ApiGrupoController.php",
+        "app/Http/Controllers/ApiPlaneacionController.php"
+      ],
+      "notes": "Import classes and controller calls to Excel::import are tracked."
+    },
+    {
+      "bullet": "Set up token-based API authentication with Laravel Passport and social login support with Socialite.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "app/Providers/AuthServiceProvider.php",
+        "app/Http/Controllers/Auth/SocialAuthController.php",
+        "routes/web.php",
+        "routes/api.php"
+      ],
+      "notes": "Dependencies, provider bootstrapping, and auth routes are explicit."
+    },
+    {
+      "bullet": "Maintained generated API reference material with LaRecipe and Swagger-style pages under resources/docs/1.0.",
+      "confidence": "high",
+      "evidence_paths": [
+        "composer.json",
+        "resources/docs/1.0/index.md",
+        "resources/docs/1.0/ApiChatsController.md",
+        "resources/docs/1.0/ApiCargosController.md"
+      ],
+      "notes": "Tracked documentation files and dependencies confirm the docs stack."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 1247,
+    "approx_loc": 366195,
+    "commit_count": 452
+  },
+  "red_flags": [
+    {
+      "issue": "Potential hardcoded third-party credentials are present in tracked source files.",
+      "paths": [
+        "resources/js/bootstrap.js",
+        "app/Http/Controllers/ConektaController.php"
+      ],
+      "notes": "Do not expose the values publicly; rotate them and move them to environment configuration before reuse."
+    },
+    {
+      "issue": "Runtime logs and archive artifacts are present in the working tree under the generated API docs tree.",
+      "paths": [
+        "resources/docs/1.0/laravel.log",
+        "resources/docs/1.0/80121360977000000054924202112141130.ZIP",
+        "resources/docs/1.0/80121360977000000054924202112171500.ZIP",
+        "resources/docs/1.0/EstadoConsumo_217_20211212.7z"
+      ],
+      "notes": "git status --porcelain marked these files as untracked during validation; they are not suitable for public portfolio output."
+    },
+    {
+      "issue": "Local setup is not self-contained in this snapshot.",
+      "paths": [
+        "routes/web.php",
+        "composer.json",
+        "package.json"
+      ],
+      "notes": "No tracked .env.example or Docker assets were found, and login or panel routes depend on URL_QUASAR."
+    },
+    {
+      "issue": "PHPUnit is configured, but the referenced bootstrap and suite directories are missing from this checkout.",
+      "paths": [
+        "phpunit.xml"
+      ],
+      "notes": "phpunit.xml references tests/bootstrap.php, tests/Unit, and tests/Feature, but those paths are absent."
+    },
+    {
+      "issue": "The working tree already contains unrelated modified application files.",
+      "paths": [
+        "app/Cargos.php",
+        "app/Http/Controllers/ApiAlumnosController.php",
+        "app/Http/Controllers/ApiTemarioController.php",
+        "app/Http/Controllers/OmegaUpAPIController.php",
+        "app/Maestros.php",
+        "app/Nivel.php",
+        "app/Status.php",
+        "app/User.php",
+        "routes/api.php"
+      ],
+      "notes": "Detected via git status --porcelain during final validation; these files were not edited as part of this documentation task."
+    }
+  ]
+}

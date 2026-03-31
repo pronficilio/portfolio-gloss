@@ -1,0 +1,254 @@
+{
+  "schema_version": "1.0",
+  "repo": {
+    "name": "sigmacadit",
+    "root": "D:/xampp5/htdocs/sigmacadit/sigmacadit",
+    "has_git": true,
+    "remotes": [
+      "https://github.com/pronficilio/sigmacadit.git"
+    ]
+  },
+  "project": {
+    "title": "sigmacadit",
+    "one_liner": "PHP-based medical operations web application with electronic clinical record workflows.",
+    "project_type": "web_app",
+    "status": "unknown",
+    "description": "Monolithic server-rendered PHP application for clinical and administrative operations. Evidence in the repository shows authentication, permission-aware navigation, scheduling, patients, consultations, hospitalization, imaging, laboratory, rehabilitation, pharmacy, users, cash operations, branches, agreements, partner workflows, SQL artifacts, and module-specific Dockerized upload handlers."
+  },
+  "tech_stack": {
+    "languages": [
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SQL"
+    ],
+    "frontend": [
+      "Bootstrap",
+      "jQuery",
+      "jQuery UI",
+      "DataTables",
+      "Font Awesome",
+      "Bootstrap Validator"
+    ],
+    "backend": [
+      "PHP",
+      "PDO",
+      "legacy mysql_*"
+    ],
+    "datastores": [
+      "MySQL"
+    ],
+    "cloud": [],
+    "infra_devops": [
+      "Docker",
+      "Docker Compose",
+      "Apache HTTP Server"
+    ],
+    "testing": [],
+    "tooling": []
+  },
+  "how_to_run": {
+    "prerequisites": [
+      "PHP with a web server capable of serving this repository as a web root",
+      "MySQL",
+      "Docker (optional, only for module-specific upload, image, and document handlers)"
+    ],
+    "setup_steps": [
+      "No repository-level one-command setup was detected.",
+      "Provision a MySQL database using the SQL artifacts in `nuevo-sigma (1).sql`, `todo.sql`, and `agenda/SQL/` as needed.",
+      "Configure database connection settings in the PHP files under `Connections/`.",
+      "Serve the repository from a PHP-capable web root and open `login.php`.",
+      "Use module-local Docker assets only when those upload or image handlers are required."
+    ],
+    "dev_command": "No repository-level start command was detected.",
+    "build_command": "No repository-level build command was detected.",
+    "test_commands": [],
+    "lint_commands": [],
+    "docker": {
+      "has_dockerfile": true,
+      "has_compose": true,
+      "commands": []
+    },
+    "docs_references": [
+      "Connections/database.php",
+      "nuevo-sigma (1).sql",
+      "todo.sql",
+      "agenda/insertar_en_tabla_documentacion.txt",
+      "usuarios/documentos/Dockerfile",
+      "usuarios/documentos/docker-compose.yml"
+    ]
+  },
+  "quality_signals": {
+    "ci": {
+      "present": false,
+      "providers": [],
+      "config_paths": []
+    },
+    "linting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "formatting": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "type_checking": {
+      "present": false,
+      "tools": [],
+      "evidence_paths": []
+    },
+    "tests": {
+      "present": false,
+      "levels": [],
+      "frameworks": [],
+      "evidence_paths": []
+    }
+  },
+  "cv_bullets": [
+    {
+      "bullet": "Maintained a PHP-based medical operations platform covering reception, consultations, hospitalization, imaging, laboratory, rehabilitation, pharmacy, administration, cash, and partner workflows.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "htmls/menus.php",
+        "consultas.php",
+        "hospitalizacion.php",
+        "imagen.php",
+        "laboratorio.php",
+        "servicios.php",
+        "seguros.php",
+        "usuarios.php"
+      ],
+      "notes": "Navigation targets and top-level entry pages explicitly enumerate the functional areas."
+    },
+    {
+      "bullet": "Implemented and maintained role-based navigation and access control, exposing modules according to user permissions, access tiers, and session state.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "menu.php",
+        "partes/parseLogin.php",
+        "recursos/utilities.php",
+        "recursos/session.php"
+      ],
+      "notes": "The code gates modules by permission strings, validates login state, and prepares per-user session data."
+    },
+    {
+      "bullet": "Supported appointment scheduling workflows with server-side checks for doctor availability and overlapping bookings.",
+      "confidence": "high",
+      "evidence_paths": [
+        "agenda/insertar_en_tabla_documentacion.txt",
+        "agenda/insertar_en_tabla.json.php",
+        "agenda/agenda_del_dia.json.php",
+        "agenda/consultas_agenda.php"
+      ],
+      "notes": "A project-specific documentation file describes the scheduling rules and supporting handlers are committed alongside it."
+    },
+    {
+      "bullet": "Built operational screens and reports around asynchronous PHP endpoints and DataTables-style server-side handlers across multiple modules.",
+      "confidence": "high",
+      "evidence_paths": [
+        "index.php",
+        "consultas/datatable-serverside/consultas.php",
+        "trabajo_social/datatable-serverside/consultas.php",
+        "usuarios/datatable-serverside/usuarios.php",
+        "caja/reportes/datatable-serverside/reportes.php"
+      ],
+      "notes": "The app includes first-party `datatable-serverside` directories and DataTables assets referenced from application entry pages."
+    },
+    {
+      "bullet": "Maintained administrative and reporting surfaces for users, branches, agreements, cash operations, productivity tracking, and insurance-related workflows.",
+      "confidence": "high",
+      "evidence_paths": [
+        "htmls/menus.php",
+        "usuarios/index.php",
+        "sucursales.php",
+        "caja/reporte_d.php",
+        "productividad_cst.php",
+        "seguros.php"
+      ],
+      "notes": "Menu routing and dedicated entry pages show broad administrative scope beyond clinical modules."
+    },
+    {
+      "bullet": "Containerized ancillary upload and media handlers with Apache/PHP Docker images for documents, photos, signatures, logos, and clinical images.",
+      "confidence": "high",
+      "evidence_paths": [
+        "usuarios/documentos/Dockerfile",
+        "usuarios/documentos/docker-compose.yml",
+        "usuarios/fotos/Dockerfile",
+        "usuarios/firmas/Dockerfile",
+        "pacientes/documentos/docker-compose.yml",
+        "imagen/fotografias/Dockerfile",
+        "seguros/logotipos/docker-compose.yml"
+      ],
+      "notes": "These Docker assets appear in feature-specific folders, indicating containerized support services rather than a repo-wide containerization strategy."
+    },
+    {
+      "bullet": "Worked in a MySQL-backed PHP codebase that ships SQL schema/data artifacts and mixes PDO with legacy mysql_* access patterns.",
+      "confidence": "high",
+      "evidence_paths": [
+        "Connections/database.php",
+        "menu.php",
+        "partes/parseLogin.php",
+        "nuevo-sigma (1).sql",
+        "todo.sql"
+      ],
+      "notes": "Database access and schema artifacts are explicit in the committed source."
+    },
+    {
+      "bullet": "Maintained authentication hardening features such as CSRF token validation, remember-me cookies, session fingerprinting, and idle-session expiry.",
+      "confidence": "high",
+      "evidence_paths": [
+        "login.php",
+        "partes/parseLogin.php",
+        "recursos/utilities.php",
+        "recursos/session.php"
+      ],
+      "notes": "Shared auth helpers implement token validation, cookie-based login, session refresh, fingerprint checks, and timeout handling."
+    }
+  ],
+  "repo_stats": {
+    "tracked_file_count": 11459,
+    "approx_loc": 2562409,
+    "commit_count": 37
+  },
+  "red_flags": [
+    {
+      "issue": "No repository-level CI, test, lint, formatting, or type-check configuration was detected outside vendored dependencies.",
+      "paths": [],
+      "notes": "Searches for workflow files and common automation configs returned no project-level matches."
+    },
+    {
+      "issue": "Database configuration appears to be file-based under `Connections/`; no `.env.example` or similar environment template was detected.",
+      "paths": [
+        ".gitignore",
+        "Connections/database.php"
+      ],
+      "notes": "The ignore file excludes `Connections/*`, while the application code depends on PHP connection files rather than an environment template."
+    },
+    {
+      "issue": "The codebase mixes PDO with deprecated mysql_* APIs.",
+      "paths": [
+        "Connections/database.php",
+        "menu.php",
+        "partes/parseLogin.php"
+      ],
+      "notes": "This signals legacy PHP constraints and increases long-term maintenance risk."
+    },
+    {
+      "issue": "A large amount of third-party frontend code is committed directly into the repository tree.",
+      "paths": [
+        "bootstrap/css/bootstrap.min.css",
+        "DataTables-1.10.13/media/js/jquery.dataTables.min.js",
+        "tinymce/tinymce.min.js",
+        "c3/package.json",
+        "jq-file-upload-9.12.5/package.json"
+      ],
+      "notes": "Vendored assets make project-level manifests and quality signals harder to isolate."
+    }
+  ]
+}
+
